@@ -1,15 +1,17 @@
 class Solution {
     public int[] solution(int brown, int yellow) {
-        
-        for(int i =3 ; i<= brown/2; i++){
-            for(int j = 3; j<= yellow+2; j++){
-                if(i< j) continue;
-                if(brown == 2*i+2*(j-2) && yellow == (i-2)*(j-2)){
-                    return new int[]{i,j};
+        int a = 1;
+        int b = 1;
+        int[] answer = {};
+        for(int x =1; x<= brown/2; x++){
+            for(int y=1; y<= x; y++){
+                if(x*y == brown + yellow){
+                    if(2*x + 2*y - 4 == brown){
+                        return new int[]{x,y};
+                    }
                 }
             }
         }
-        
-        return new int[]{0,0};
+        return new int[]{};
     }
 }
