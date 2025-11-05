@@ -1,33 +1,36 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
-    public static void main(String[] args) throws NumberFormatException, IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bis = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(bis.readLine());
 
-        int n = Integer.parseInt(br.readLine());
+        HashSet<String> set = new HashSet<>();
 
-        String[] s_array = new String[n];
-
-        for (int i = 0; i< n; i++){
-            s_array[i] = br.readLine();
+        for(int i=1; i<=N; i++){
+            set.add(bis.readLine());
         }
 
-        Arrays.sort(s_array, (s1,s2) ->{
-            if(s1.length() == s2.length()){
-                return s1.compareTo(s2);
-            } else {
-                return s1.length() - s2.length();
+        List<String> list = new ArrayList<>(set);
+
+        Collections.sort(list, new Comparator<String>(){
+            @Override
+            public int compare(String s1, String s2){
+                if(s1.length() == s2.length()){
+                    return s1.compareTo(s2);
+                } else {
+                    return s1.length() - s2.length();
+                }
             }
         });
 
-        System.out.println(s_array[0]);
-        for(int i=1; i< n; i++){
-            if(!s_array[i].equals(s_array[i-1])){
-                System.out.println(s_array[i]);
-            }
+        StringBuilder sb = new StringBuilder();
+
+        for(String str : list){
+            sb.append(str).append("\n");
         }
 
-        br.close();
+        System.out.println(sb.toString());
     }
 }
